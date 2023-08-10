@@ -15,7 +15,7 @@ CXXFLAGS=-Wall -std=c++17
 # 头文件路径、库路径和库选项
 INCLUDE_PATH=
 LIBRARY_PATH=
-LIBS=-lmylibrary
+LIBS=
 
 # 目标文件
 C_OBJECTS=$(C_SOURCES:.c=.o)
