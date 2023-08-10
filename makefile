@@ -12,6 +12,11 @@ CXX=g++
 CFLAGS=-Wall
 CXXFLAGS=-Wall -std=c++17
 
+# 头文件路径、库路径和库选项
+INCLUDE_PATH=
+LIBRARY_PATH=
+LIBS=-lmylibrary
+
 # 目标文件
 C_OBJECTS=$(C_SOURCES:.c=.o)
 CPP_OBJECTS=$(CPP_SOURCES:.cpp=.o)
@@ -24,15 +29,15 @@ all: $(EXECUTABLE)
 
 # 生成可执行文件
 $(EXECUTABLE): $(C_OBJECTS) $(CPP_OBJECTS)
-	$(CXX) $(CXXFLAGS) $(C_OBJECTS) $(CPP_OBJECTS) -o $@
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE_PATH) -L$(LIBRARY_PATH) $(C_OBJECTS) $(CPP_OBJECTS) $(LIBS) -o $@
 
 # 编译.c文件为.o文件
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCLUDE_PATH) -c $< -o $@
 
 # 编译.cpp文件为.o文件
 .cpp.o:
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE_PATH) -c $< -o $@
 
 # 清除编译生成的文件
 clean:
